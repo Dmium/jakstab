@@ -27,7 +27,7 @@ public class CapstoneParser {
                 return factory.newRetInstruction(csinstr.mnemonic, (Immediate) getOperand(((X86.OpInfo) (csinstr.operands)).op[0], csinstr), csinstr.size, prefixes);
             return factory.newRetInstruction(csinstr.mnemonic, csinstr.size, prefixes);
         }
-        if (csinstr.group(X86_const.X86_GRP_JUMP)) {//(csinstr.mnemonic.charAt(0) == 'j')
+        if (csinstr.group(X86_const.X86_GRP_JUMP) || csinstr.group(X86_const.X86_GRP_BRANCH_RELATIVE)) {//(csinstr.mnemonic.charAt(0) == 'j')
             if (csinstr.mnemonic.startsWith("jmp")) {
                 return factory.newJmpInstruction(csinstr.mnemonic, getOperand(((X86.OpInfo) (csinstr.operands)).op[0], csinstr), csinstr.size, prefixes);
             } else {
